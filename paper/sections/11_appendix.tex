@@ -56,8 +56,24 @@ Gemini-I & 1 & 2 & 15 \\
 \label{tab:judge-confusion}
 \end{table}
 
-\paragraph{Open-source judge cross-validation.}
-We additionally plan to run Qwen2.5-7B-Instruct (vision mode) as an open-source judge variant using the identical prompt; this run is deferred to the camera-ready version pending human-validation results. The cross-family validation we currently report is Gemini-2.5-Flash vs Gemini-2.5-Pro on the same 358 rows ($89.2\%$ 3-way agreement, $\kappa \approx 0.82$; Appendix~\ref{app:per-language-fullval-joint} and Section~\ref{sec:inversion}), which is the stronger of the two: the Pro judge is independent in checkpoint, generation, and decoding settings from the Flash judge and the inversion replicates across both.
+\paragraph{Cross-family judge replication (Claude Sonnet 4).}
+To strengthen the judge-reliability story beyond intra-family Gemini-Pro, we additionally re-judged the 716-tuple held-out (358 Qwen + 358 InternVL base predictions) through \textbf{Claude Sonnet 4} (Anthropic, via OpenRouter) using the identical \S\ref{app:judge-prompt} prompt. After retry-exhaustion and parse drops ($33/712$ rows, $4.6\%$; the script supports JSON and a prose-recovery fallback for verdicts emitted as free-text reasoning), $679$ rows received valid Claude verdicts; the intersection with the Gemini-Flash side is $n=671$ matched (sample\_id, vlm\_model) pairs. The 3-way Flash-vs-Claude agreement is $\clpct\%$ ($557/671$) with Cohen's $\kappa = \clkappa$ --- substantial under \citet{landis1977kappa} and only modestly below the intra-family Flash-vs-Pro $\kappa \approx 0.82$ (the gap is expected: different model families have different decision boundaries on \textsc{Partial}). Binary CORRECT-vs-not agreement is $\clbinpct\%$. Per-VLM: InternVL $\kappa = 0.77$ ($n=331$), Qwen $\kappa = 0.68$ ($n=340$). Per-script: Latin $\kappa = 0.76$ ($n=397$), non-Latin $\kappa = 0.66$ ($n=274$) --- both still substantial. The cross-family confusion (Table~\ref{tab:claude-confusion}) shows a strong diagonal (304 \textsc{C-C}, 105 \textsc{P-P}, 148 \textsc{I-I} out of 671); the residual disagreement is roughly symmetric between Gemini-strict$\to$Claude-strict and the reverse, not directionally biased. The Gemini-Flash judge is therefore \emph{cross-family} validated, not just intra-family validated; the open-source Qwen2.5-7B judge variant remains as an additional camera-ready triangulation point.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+& Claude-C & Claude-P & Claude-I \\
+\midrule
+Gemini-C & \textbf{304} & 22  & 32  \\
+Gemini-P & 9   & \textbf{105} & 10  \\
+Gemini-I & 21  & 20  & \textbf{148} \\
+\bottomrule
+\end{tabular}
+\caption{Gemini-2.5-Flash vs Claude Sonnet 4 3$\times$3 confusion on the $n=671$ matched held-out tuples. Bold diagonal entries; total $557/671$ ($\clpct\%$) 3-way agreement, Cohen's $\kappa = \clkappa$.}
+\label{tab:claude-confusion}
+\end{table}
 
 \section{Per-language full tables}
 \label{app:per-language}
