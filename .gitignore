@@ -52,3 +52,8 @@ service-account*.json
 
 # Notebook checkpoints
 .ipynb_checkpoints/
+
+# GCP service-account JSON (any naming pattern)
+project-*.json
+*-service-account*.json
+gcp-*.json
