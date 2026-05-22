@@ -1,0 +1,31 @@
+# Pinned versions used in the experiments. Most CPU-only analysis runs with
+# just numpy + pandas + matplotlib. GPU inference additionally needs torch,
+# transformers, accelerate, bitsandbytes, peft, flash-attn.
+
+# ---- core analysis (CPU-only) ----
+numpy>=1.26
+pandas>=2.1
+matplotlib>=3.8
+pillow>=10.0
+pyarrow>=15.0           # direct parquet read for image extraction
+
+# ---- VLM inference (GPU) ----
+torch>=2.5
+transformers==4.57.3
+accelerate==1.12.0
+bitsandbytes==0.49.0
+peft>=0.13
+datasets==4.4.2
+# flash-attn==2.8.3     # installed separately on GPU (Linux only); commented to avoid pip-resolver thrash on non-GPU envs
+
+# ---- judge (Vertex AI / Gemini) ----
+google-cloud-aiplatform>=1.70
+google-auth>=2.30
+
+# ---- annotation app ----
+streamlit>=1.40
+
+# ---- utilities ----
+python-dotenv>=1.0
+huggingface-hub>=0.26
+tqdm>=4.66

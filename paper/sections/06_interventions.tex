@@ -1,0 +1,37 @@
+\section{13 interventions move strict-EM but not semantic-EM}
+\label{sec:interventions}
+
+We test on the 358-row MTVQA held-out whether published lift-style interventions on cross-lingual document VLMs move strict-EM, semantic-EM, or both. We test 13 interventions across four axes (text-side data, alignment-side adaptation, decoding-side scoring, representation-side steering): 11 test-time and 2 training-time.
+
+The test-time interventions are \textbf{(1)} OCR-prepended prompt (EasyOCR transcription prepended to the question); \textbf{(2--4)} OCR logit-bias at $\lambda \in \{1,2,3\}$ (decode-step log-prob bonus for tokens prefix-matching any OCR substring); \textbf{(5)} Beam5+OCR-rerank (beam-5 re-ranked by OCR-substring inclusion); \textbf{(6)} visual contrastive decoding (VCD, $\alpha=1.0$, \citealp{leng2024vcd}); \textbf{(7--11)} probe-mean-difference residual-stream steering at four layers $\{16,20,24,27\} \times \alpha \in \{-50, -10, 0, +10, +50\}$. Training-time: \textbf{(12)} anchor-only SFT (QLoRA rank 32, $\beta=0$, $\lambda_{\text{anchor}}=1.0$; cf.~\citealp{rafailov2023dpo}) and \textbf{(13)} SimPO~\citep{meng2024simpo} over the same pairs. Table~\ref{tab:13-interventions} reports aggregate 358-row $\Delta$ vs base Qwen2.5-VL-7B.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+intervention & $\Delta$strict & $\Delta$sem-C & $\Delta$sem-C+P \\
+\midrule
+OCR-prepended prompt          & $+0.6$ & $\sim 0$ & $\sim 0$ \\
+OCR logit-bias $\lambda=1$    & $+0.0$ & $\sim 0$ & $\sim 0$ \\
+OCR logit-bias $\lambda=2$    & $+0.0$ & $\sim 0$ & $\sim 0$ \\
+OCR logit-bias $\lambda=3$    & $-3.4$ & $\sim 0$ & $\sim 0$ \\
+Beam5 + OCR-rerank             & $+0.0$ & $\sim 0$ & $\sim 0$ \\
+VCD ($\alpha=1$)               & $-1.6$ & $\sim 0$ & $\sim 0$ \\
+Probe-steer L16 $\alpha=+10$   & $-0.2$ & $\sim 0$ & $\sim 0$ \\
+Probe-steer L20 $\alpha=+10$   & $-0.4$ & $\sim 0$ & $\sim 0$ \\
+Probe-steer L24 $\alpha=+10$   & $-0.4$ & $\sim 0$ & $\sim 0$ \\
+Probe-steer L27 $\alpha=+10$   & $-0.6$ & $\sim 0$ & $\sim 0$ \\
+Probe-steer L20 $\alpha=+50$   & $-3.4$ & $\sim 0$ & $\sim 0$ \\
+\midrule
+Anchor-SFT (d13, 952 pairs)    & $\bm{+4.19}$ & --- & --- \\
+Anchor-SFT (d16, 6054 pairs)   & $+2.79$ & $-0.28$ & $-0.84$ \\
+SimPO ($\beta=2$)              & $-20.1$ & $-19.4$ & $-22.3$ \\
+\bottomrule
+\end{tabular}
+\caption{13 interventions on Qwen2.5-VL-7B, 358-row MTVQA held-out. Rows $\sim 0$ have $|\Delta\text{sem-C}| < 0.5$ pp (full table Appendix~\ref{app:13-interventions}). \emph{All 11 test-time interventions have $|\Delta\text{sem-C}| < 1$ pp.}}
+\label{tab:13-interventions}
+\end{table}
+
+\paragraph{Reading the table.}
+Across all 11 test-time interventions, $|\Delta\text{sem-C}| < 1$ pp. The largest strict-EM \emph{degradation} ($-3.4$ pp under OCR logit-bias $\lambda=3$ and probe-steer L20 $\alpha=+50$) does not show up under semantic-EM either. The interventions visibly redistribute Qwen's failure modes (hallucination drops sharply under OCR logit-bias while wrong-span-from-image rises commensurately; Appendix~\ref{app:hardcore}) but do not change the total count of semantically correct predictions. Training-time interventions tell the same story: SFT-d13 (952 pairs) lifts strict-EM by $+4.19$ pp; scaling 6.4$\times$ to SFT-d16 (6054 pairs) \emph{reduces} the strict lift to $+2.79$ pp while leaving semantic-EM unmoved ($\Delta = +0.00$ pp aggregate). SimPO collapses approximately symmetrically on both metrics ($-20.1$/$-19.4$), confirming that on genuine collapse the two metrics agree. The signature of \emph{output-style lift without capability gain} is: positive strict moves not showing up under semantic-EM, negative drops showing up under both. We replicate one intervention (OCR-prepended prompt) on InternVL-2.5-8B with the same flat pattern (strict $+0.3$ pp, sem-C $-0.6$ pp); the invariance is not Qwen-specific. Aggregate paired 95\% CIs on the d16 row are $\Delta$strict $=+3.64$ pp [$+0.06$, $+7.23$] (statistically significant) and $\Delta$sem-C $=-0.28$ pp [$-4.98$, $+4.42$] (statistically null), reported in detail in \S\ref{sec:sft}.

@@ -1,0 +1,20 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Multilingual document VLMs and evaluation.}
+Multilingual document understanding has been driven by datasets MTVQA \citep{tang2024mtvqa} (9 languages, scanned/photographed documents), XFUND \citep{xu2022xfund} (7 languages, form understanding converted to extractive QA), MMBench-CN \citep{liu2023mmbench}, M3Exam \citep{zhang2023m3exam}, and MMVet \citep{yu2024mmvet}. The benchmarks score predictions by exact match against gold string(s), and rank models by language-aggregated EM. Recent document VLMs targeting these benchmarks include Qwen2.5-VL \citep{bai2025qwen25vl, wang2024qwen2vl} and InternVL-2.5 \citep{chen2024internvl25}.
+
+\paragraph{LLM-as-judge evaluation.}
+\citet{zheng2024judging} establish LLM-as-judge as a viable evaluation protocol for open-ended generation, with MT-Bench and Chatbot Arena as reference benchmarks. MMVet \citep{yu2024mmvet} adopts GPT-4 judge as the headline scoring mechanism for multimodal generation. Our work extends this paradigm to multilingual document VLMs, with the specific contribution of (a) using \emph{vision-grounded} judging (the judge sees the source image, not just text), (b) characterising the bias that strict-EM introduces \emph{at the cross-lingual level}, and (c) decomposing artifact share by VLM architecture.
+
+\paragraph{Exact-match vs F1/semantic equivalence in multilingual QA.}
+The text-only multilingual QA literature has documented similar EM/F1 divergence at scale: XQuAD \citep{artetxe2020xquad}, TyDi-QA \citep{clark2020tydiqa}, and MLQA \citep{lewis2020mlqa} all report EM and F1 side-by-side and explicitly caution about cross-lingual annotation differences inflating EM gaps. \citet{ruder2021xtreme-r} list ``measurement artifacts in EM-based cross-lingual evaluation'' as one of the key open problems. Our contribution extends this critique into the multimodal regime, where the image grounding additionally allows reliable LLM-judge adjudication of cross-lingual semantic equivalence.
+
+\paragraph{Decoding-side and steering interventions on VLMs.}
+Visual contrastive decoding \citep{leng2024vcd} and OCR-conditioning prompts are widely-reported test-time interventions for grounding-related VLM failures.\footnote{We treat OCR-conditioning as a class of prompt-engineering interventions and report the specific variant we evaluate in Section~\ref{sec:interventions}.} Probe-mean-difference steering \citep{turner2023actadd, zou2023repe} is the canonical representation-engineering intervention. We evaluate 11 such interventions together against semantic-EM and report flat $\Delta$semantic-EM despite up to $\pm 4$ pp $\Delta$strict-EM (Section~\ref{sec:interventions}).
+
+\paragraph{Cross-lingual SFT and preference learning.}
+Anchor-only SFT and direct-preference optimisation \citep{rafailov2023dpo, meng2024simpo} are standard recipes for capability transfer in VLMs. Our finding that 358-row MTVQA semantic-EM is invariant to these recipes despite $+4.2$ pp strict-EM lift is a contribution to evaluating these recipes' true cross-lingual capability gains.
+
+\paragraph{Concurrent work.}
+Several contemporaneous lines of work explore LLM-as-judge protocols for multilingual VQA. Our work is, to our knowledge, the first to (a) characterise per-VLM-architecture artifact share decomposition, and (b) demonstrate that two state-of-the-art VLMs reverse rank-order on the same input under strict vs semantic evaluation. We discuss concurrent-work positioning in detail at submission time.

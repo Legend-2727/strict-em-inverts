@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+
+% Official ACL/EMNLP style. Use "review" for ARR/EMNLP submission (anonymous,
+% no page numbers); switch to "final" (or omit the option) for camera-ready.
+\usepackage[review]{acl}
+
+% Standard package includes (ACL template).
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+
+% Paper-specific packages.
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Template/no-answer strings used in the paper. Wrapped in macros so we can
+% swap between native-script rendering and ASCII placeholders depending on
+% font support. The compile-here build uses ASCII placeholders since pdflatex
+% does not have CJK or Arabic fonts pre-loaded; the reader gets the romanised
+% label which is still informative for the failure mode being described. To
+% restore native rendering, swap in the CJK / Arabic definitions and switch
+% to XeLaTeX/LuaLaTeX with appropriate font packages.
+\newcommand{\jatemplate}{\texttt{<ja:kisai-nashi>}}
+\newcommand{\jatemplatealt}{\texttt{<ja:kisai-ga-nai>}}
+\newcommand{\jaunknown}{\texttt{<ja:fumei>}}
+\newcommand{\artemplate}{\texttt{<ar:ghayr-madhkur>}}
+
+% Human-judge agreement statistics from the 50-row blind human-validation
+% pass (scripts/day18_human_validation_scoring.py + day21_patch_kappa_into_paper.py).
+\newcommand{\hjkappa}{0.61}
+\newcommand{\hjpct}{74.0}
+\newcommand{\hjbinpct}{82.0}
+
+\title{Strict-EM Inverts Cross-Lingual VLM Rankings:\\An Architecture-Specific Measurement Artifact}
+
+\author{Anonymous Submission}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Multilingual document VLMs are ranked on benchmarks scored by strict exact-match (EM) against a single gold string. On three open VLMs over the full MTVQA validation set ($n=2142$ jointly judged rows) and a 1394-row XFUND replicate, we show strict-EM systematically penalises semantically-correct answers in an \emph{architecture-specific} way that reverses cross-VLM rankings on identical inputs. Under a vision-grounded Gemini-2.5-Flash semantic-EM judge (cross-validated against Gemini-2.5-Pro at $89\%$ 3-way agreement, $\kappa{\approx}0.82$, and against a 50-row blind human annotator at $\kappa{=}0.61$), InternVL-2.5-8B leads Qwen2.5-VL-7B by $+5.5$ pp on strict-EM while Qwen leads by $+11.95$ pp on semantic-EM-C; the inversion holds in $100\%$ of 2000 paired bootstrap resamples. Decomposed by architecture, the Latin/non-Latin ``artifact share''---the fraction of the script gap explained by surface-form mismatch rather than capability---spans 121 pp across three VLMs (Qwen $+66\%$, InternVL $+8\%$, Phi-3.5-vision $-57\%$); the Qwen-vs-Phi difference is bootstrap-significant. Across 13 plausible cross-lingual interventions on Qwen-7B, aggregate $\Delta$strict moves up to $+4.2$ pp while aggregate $\Delta$semantic-EM-C is statistically null ($-0.28$ pp [$-4.98$, $+4.42$] for the largest-lifting SFT recipe), and per-language point estimates show direction-of-effect anti-correlation on non-Latin scripts. We propose a nine-item reporting protocol (R1--R9) deployable at single-digit dollar cost: report both metrics per language with CIs, validate the judge against a cross-family second judge or human annotators, and release the (image, gold, prediction, verdict, reason) tuples for third-party verification. The implication is that a substantial part of recently reported cross-lingual strict-EM lift literature is, on re-measurement against the image, surface-form normalisation; and that the choice of multilingual VLM from a strict-EM leaderboard is the choice of architecture whose output-style prior matches gold convention, not the model that more often produces a semantically correct image-grounded answer.
+\end{abstract}
+
+\input{sections/01_intro}
+\input{sections/02_related}
+\input{sections/03_setup}
+\input{sections/04_measurement}
+\input{sections/05_inversion}
+\input{sections/06_interventions}
+\input{sections/07_sft}
+\input{sections/08_protocol}
+\input{sections/10_conclusion}
+
+\input{sections/09_limitations}
+
+\bibliography{references}
+
+\appendix
+\input{sections/11_appendix}
+
+\end{document}

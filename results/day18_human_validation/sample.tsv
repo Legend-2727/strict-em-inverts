@@ -1,0 +1,51 @@
+idx	language	model	image	question	gold	pred	gemini_verdict	HUMAN_VERDICT	HUMAN_NOTES
+0	fr	base	images/00_train__01917__FR_427.png	Quelle est la plus petite unité au niveau de laquelle une relation peut être observée ?	La dyade	Les dyades	PARTIAL	CORRECT	
+1	kr	d16	images/01_train__04399__KR_453.png	이미지의 글자색은 무엇입니까?	노락색, 흰색, 검정색, 빨간색	흰색	PARTIAL	CORRECT	
+2	kr	d16	images/02_train__04346__KR_405.png	행사 기간은?	~소진시 까지	소진시까지	CORRECT	CORRECT	
+3	th	base	images/03_train__05425__TH_276.png	เมนูไหนให้พลังงานมากกว่ากันระหว่าง Frozen Strawberry กับ น้ำสตรอว์เบอร์รีสีแดงสด	Frozen Strawberry	น้ำสตรอว์เบอร์รีสีแดงสด	INCORRECT	INCORRECT	
+4	th	base	images/04_train__05287__TH_152.png	ผลิตภัณฑ์นี้ใช้ทำอะไร	ทำความสะอาดคราบสกปรก	ทำความสะอาด	PARTIAL	CORRECT	
+5	ar	base	images/05_train__00076__AR_167.png	ما نوع النص؟	شعر حر	شعر	PARTIAL	PARTIAL	
+6	ja	d16	images/06_train__03954__JA_952.png	この住所は日本のどこにありますか？	日本橋人形町三丁目	東京都中央区	PARTIAL	PARTIAL	
+7	fr	base	images/07_train__01556__FR_101.png	Quel est le texte principal dans l"image ?	Complexe Sportif Camping	Complexe Sportif	PARTIAL	PARTIAL	
+8	ja	d16	images/08_train__03880__JA_886.png	また、本資料作成にあたって、数次のアリーターダーの方の公開資料を利用させて頂いております。	引用元もご紹介しますが、漏れているがあれば随時追加していきますのでご指摘いただければ幸いです。	記載なし	INCORRECT	INCORRECT	
+9	vi	base	images/09_train__05599__VI_1051.png	Món nào có giá 25k?	Mẹt bún + đậu chả cốm	Một Bún + Đậu	INCORRECT	INCORRECT	
+10	ar	d16	images/10_train__00185__AR_265.png	ما هي التحديات التي تواجه اللسانيات في الوقت الحاضر؟	التطور السريع للتكنولوجيا وظهور أشكال جديدة من الإعلام والاتصالات	غير مذكور	CORRECT	CORRECT	
+11	ar	d16	images/11_train__00269__AR_340.png	ما هي الشخصيات التي ذكرها النص؟	الإمام الخميني والسيد حسن نصر الله	الرئيس الأمريكي باراك أوباما، والرئيس الروسي فلاديمير بوتين، والرئيس الصيني شي جين بينغ، ورئيس وزراء إسرائيل بنيامين نتنياهو، ورئيس وزراء العراق حيدر العبادي، ورئيس وزراء الأردن رزاز رزاز، ورئيس وزراء قطر تميم بن	INCORRECT	INCORRECT	
+12	ru	d16	images/12_train__04602__RU_113.png	Каков главный образ рассказа?	Главный образ рассказа - образ Матрены Васильевны.	Главный образ рассказа - это образ Матренина двора.	INCORRECT	INCORRECT	
+13	de	d16	images/13_train__00783__DE_292.png	Was steht auf dem Schild?	C&A, 25%	25%	PARTIAL	PARTIAL	
+14	kr	base	images/14_train__04466__KR_513.png	버스시장 모바일은 어디에서 사용할 수 있나요?	스마트폰이 있는 곳이라면 어디서나 사용할 수 있습니다.	스마트폰으로	INCORRECT	PARTIAL	
+15	fr	d16	images/15_train__01556__FR_101.png	Dans quelle direction indique le panneau ?	Vers la gauche	Vers le complexe sportif et le camping	INCORRECT	INCORRECT	
+16	vi	d16	images/16_train__05753__VI_165.png	Người được tiêm chủng ở đâu?	131 Nguyễn Trãi, Thanh Xuân, Hà Nội	Bệnh viện Bạch Mai	CORRECT	INCORRECT	
+17	de	base	images/17_train__01087__DE_566.png	Wie viele Wörter sind im Text?	Eins	Zwei	INCORRECT	INCORRECT	
+18	vi	base	images/18_train__06177__VI_547.png	Giá các loại đồ uống là bao nhiêu?	Từ 10.000 đồng đến 25.000 đồng	Nước ép dừa 20k	PARTIAL	INCORRECT	
+19	vi	d16	images/19_train__06177__VI_547.png	Món nào sau đây không phải là món ăn vặt?	Bún bò Huế	Bánh mì trộn	INCORRECT	INCORRECT	
+20	kr	base	images/20_train__04245__KR_314.png	기존 고객에 편리함 제공은?	영업 및 유지보수 담당자와 소통의 SNS 창구 마련	One-stop 쌍방향 실시간 소통 채널	PARTIAL	PARTIAL	
+21	kr	base	images/21_train__04466__KR_513.png	버스시장 모바일을 사용하면 어떤 장점이 있나요?	버스 시간을 검색하고, 버스 위치를 확인하는 것이 편리해집니다.	스마트폰으로 검색 가능합니다.	INCORRECT	CORRECT	
+22	it	base	images/22_train__02857__IT_560.png	Come arrivo in autostrada?	Andare a destra.	Autostrade	PARTIAL	INCORRECT	
+23	de	base	images/23_train__00783__DE_292.png	Was steht auf dem Schild?	C&A, 25%	25%	PARTIAL	PARTIAL	
+24	vi	d16	images/24_train__06177__VI_547.png	Các món ăn vặt có giá bao nhiêu?	Từ 9.000 đồng đến 55.000 đồng	Các món ăn vặt có giá từ 9k đến 55k.	CORRECT	CORRECT	
+25	ar	d16	images/25_train__00076__AR_167.png	ما نوع النص؟	شعر حر	شعر	PARTIAL	PARTIAL	
+26	ru	base	images/26_train__04602__RU_113.png	Какова композиция рассказа?	Композиция рассказа кольцевая.	Вместе с тем рассказ «Матренин двор» связывали со сформировавшимся во второй половине 1950-х годов оригинальным жанром «монументального рассказа». Примером этого жанра может служить рассказ М. Шолохова «Судьба человека».	INCORRECT	INCORRECT	
+27	it	d16	images/27_train__02665__IT_388.png	Quali sono le principali classi sociali individuate da Marx?	Marx individua due principali classi sociali: la borghesia e il proletariato.	La classe operaia, la classe borghese e la classe proletaria.	PARTIAL	PARTIAL	
+28	ja	base	images/28_train__03692__JA_716.png	この写真のイメージは何ですか？	アーケード商店街	商店街の夜景	PARTIAL	CORRECT	
+29	it	d16	images/29_train__02665__IT_388.png	Qual è l"attualità della teoria della stratificazione sociale di Marx?	La teoria della stratificazione sociale di Marx è ancora attuale in quanto offre una spiegazione delle disuguaglianze sociali che esistono nelle società capitalistiche.	La teoria della stratificazione sociale di Marx è ancora attuale perché spiega meglio la realtà sociale e politica del mondo moderno.	INCORRECT	PARTIAL	
+30	it	d16	images/30_train__02812__IT_519.png	Quale sierotipo presenta il ribosio nella capsula?	sierotipo b	Sierotipo b	CORRECT	CORRECT	
+31	ar	d16	images/31_train__00309__AR_377.png	ما هي المناسبة التي تتحدث عنها المقالة؟	عيد ميلاد ماريا كاري	الذكرى السنوية الـ14 لماريا كاري	INCORRECT	INCORRECT	
+32	fr	d16	images/32_train__01602__FR_143.png	Quel est le texte principal dans l"image ?	SAUF BUS	SAUF BUS	CORRECT	CORRECT	
+33	ja	base	images/33_train__03431__JA_481.png	バスは何色ですか？	緑色	緑	CORRECT	CORRECT	
+34	ja	base	images/34_train__03380__JA_435.png	この標識は今後どうなっていくのでしょうか？	この標識は、今後撤去される可能性がある	この標識は、時間とともに色褪せたり、傷んだりすることがあります。また、風雨にさらされると剥がれたり、変形したりする可能性もあります。	CORRECT	INCORRECT	
+35	ru	d16	images/35_train__04870__RU_355.png	Какую функцию выполняет нервная система?	Регуляцию и координацию деятельности всех органов и систем организма.	Регуляцию жизнедеятельности организма.	PARTIAL	CORRECT	
+36	ar	base	images/36_train__00185__AR_265.png	ما هي اللغة التي كتب بها الكتاب؟	اللغة العربية	اللغة العربية	CORRECT	CORRECT	
+37	ru	d16	images/37_train__05140__RU_5.png	Какое событие стало причиной создания портрета?	Вступление Петра I на престол	Смерть Петра I.	CORRECT	CORRECT	
+38	de	d16	images/38_train__00671__DE_191.png	Was steht auf dem Plakat?	Winnetou	WINNETOU	CORRECT	CORRECT	
+39	it	base	images/39_train__02688__IT_408.png	Chi è l"autore dell"opera teatrale?	Antonio Latella	Antonio Latella	CORRECT	CORRECT	
+40	th	base	images/40_train__05425__TH_276.png	ส่วนผสมของ Frozen Strawberry มีอะไรบ้าง	สตรอว์เบอร์รี ส้มวาเลนเซีย เมเปิลไซรัป	สตรอเบอร์รี่ 10 ผล, ลิมมา 150 กรัม, มานาว Lime 1/2 ผล, น้ำผึ้ง 1 ช้อนตวงเล็ก	INCORRECT	INCORRECT	
+41	vi	base	images/41_train__05557__VI_1013.png	Thuốc gì đây?	Thuốc đặc trị cảm cúm	Paracetamol	PARTIAL	PARTIAL	
+42	th	d16	images/42_train__05425__TH_276.png	เมนูไหนให้พลังงานมากกว่ากันระหว่าง Frozen Strawberry กับ น้ำสตรอว์เบอร์รีสีแดงสด	Frozen Strawberry	Frozen Strawberry	CORRECT	CORRECT	
+43	ru	d16	images/43_train__05066__RU_531.png	Какое художественное средство использовано в четверостишии?	Олицетворение	Метафора	PARTIAL	PARTIAL	
+44	de	base	images/44_train__01110__DE_587.png	Was ist die Bedeutung des blauen Schildes?	Parken nur für Inhaber erlaubt ist.	Es gibt keine Parkmöglichkeiten.	INCORRECT	INCORRECT	
+45	it	base	images/45_train__02665__IT_388.png	In che modo la teoria della stratificazione sociale di Marx è stata influenzata dal pensiero di Hegel?	La teoria della stratificazione sociale di Marx è stata influenzata dal pensiero di Hegel in quanto Marx ha ripreso da Hegel la concezione della storia come lotta di classe.	Marx ha adottato il concetto di "semplificazione" della stratificazione sociale da Hegel, che era parte di una famiglia di idee sulla dinamica della società industriale capitalistica.	INCORRECT	INCORRECT	
+46	fr	d16	images/46_train__02313__FR_784.png	Comment pouvons-nous éviter de percevoir le monde comme étant plein de conflits et de désordres ?	En comprenant que le monde n"est pas régi par un ordre de difficultés, mais par un ordre de complexité.	En nous concentrant sur les aspects positifs du monde et en cherchant à comprendre les causes des conflits.	INCORRECT	INCORRECT	
+47	th	d16	images/47_train__05287__TH_152.png	ผลิตภัณฑ์นี้ใช้ทำอะไร	ทำความสะอาดคราบสกปรก	ทำความสะอาด	PARTIAL	CORRECT	
+48	ja	d16	images/48_train__03961__JA_95.png	駐輪場の名前は何ですか？	自転車専用	記載なし	INCORRECT	INCORRECT	
+49	fr	base	images/49_train__01830__FR_34.png	Pourquoi papa est-il parti à la guerre ?	Parce que les allemands avaient envahi la Pologne	parce que les troupes allemandes ont pénétré en Pologne et bombardé trois villes polonaises	CORRECT	CORRECT	

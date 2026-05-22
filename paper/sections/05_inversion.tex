@@ -1,0 +1,60 @@
+\section{Cross-VLM ranking inversion}
+\label{sec:inversion}
+
+If the strict-vs-semantic gap were a universal measurement-protocol artifact, it should affect all VLMs identically and preserve their relative rankings. We show this is false: two state-of-the-art open document VLMs reverse positions on the same evaluation under the two metrics, and a third architecture sign-flips the effect.
+
+\paragraph{Head-to-head inversion (held-out and population scale).}
+We re-run InternVL-2.5-8B on the same 358-row MTVQA held-out, judge with the same Gemini-Flash prompt, and restrict to the 353 rows for which both VLMs received a clean verdict (Table~\ref{tab:vlm-inversion}). Under strict-EM, InternVL leads by $9.6$ pp; under semantic-EM-C, Qwen leads by $6.8$ pp --- a $16.4$ pp swing in measured advantage attributable purely to metric choice. Across 2000 paired bootstrap resamples the joint inversion holds in $99.1\%$. We then re-judge both VLMs on the entire 9-language MTVQA val (intersection $n=2142$): Qwen strict $29.18\%$ vs InternVL $34.69\%$ (gap $-5.52$ pp, CI [$-7.47$, $-3.50$]); Qwen sem-C $60.55\%$ vs InternVL $48.60\%$ (gap $+11.95$ pp, CI [$+9.57$, $+14.24$]). \textbf{The inversion replicates at population scale with $P(\text{joint inversion}) = 1.000$.} The cross-VLM artifact-share split becomes significant at population: Qwen $+33.7\%$ [$+13.8$, $+52.8$] vs InternVL $+6.3\%$ [$-12.4$, $+24.2$], difference $+27.4$ pp [$+4.9$, $+51.0$]. Italian, Russian, and Korean show the largest single-language Qwen-over-InternVL sem-C gaps ($+18.5$, $+35.4$, $+16.6$ pp; Appendix~\ref{app:per-language-fullval-joint}).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+metric & Qwen-7B & InternVL-8B \\
+\midrule
+strict-EM     & 24.4 \footnotesize{[19.8, 28.9]} & \textbf{34.0} \footnotesize{[29.2, 39.1]} \\
+semantic-EM-C & \textbf{55.2} \footnotesize{[50.1, 60.6]} & 48.4 \footnotesize{[43.3, 54.1]} \\
+\midrule
+gap (Q$-$I) strict & \multicolumn{2}{r}{$-9.6$ pp \footnotesize{[$-14.2$, $-5.4$]}} \\
+gap (Q$-$I) sem-C  & \multicolumn{2}{r}{$+6.8$ pp \footnotesize{[$+1.1$, $+12.2$]}} \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Cross-VLM ranking inversion}, 353-row jointly-judged MTVQA held-out (\%). Brackets are 95\% percentile bootstrap CIs ($N=2000$). Both gaps exclude zero; the inversion is significant.}
+\label{tab:vlm-inversion}
+\end{table}
+
+\paragraph{Cross-judge robustness.}
+We re-run the same 716 (image, question, gold, prediction) tuples through \textbf{Gemini-2.5-Pro} using the identical prompt: 3-way Flash-vs-Pro agreement is $89.2\%$ on both VLMs ($\kappa = 0.819$/$0.827$), and the ranking inversion is preserved (Pro reports Qwen sem-C $52.6\%$ vs InternVL $48.0\%$; both judges agree on direction and approximate magnitude). The inversion claim is robust to judge identity. Full $3\times 3$ confusion in Appendix~\ref{app:judge-reliability}.
+
+\paragraph{Architecture-dependent artifact share.}
+The script-gap decomposition makes the inversion mechanistic. We add a third architecture, Microsoft's Phi-3.5-vision-instruct ($4.1$B params, $n=341$ judged), to test whether the artifact-share split is a two-VLM coincidence. Despite Phi's weaker overall strict-EM ($13.2\%$ vs $25.7\%$ Qwen / $34.2\%$ InternVL), its Latin/non-Latin strict gap is comparable in magnitude ($+12.7$ pp). The three architectures span a $\mathbf{121}$\textbf{-pp} range of artifact share (Figure~\ref{fig:three-vlm-artifact}): Qwen $+66\%$, InternVL $+8\%$, Phi $-57\%$. The Qwen-vs-Phi difference $+124$ pp [$+33$, $+279$] is bootstrap-significant at held-out and Phi's negative artifact share excludes zero; the Qwen-vs-InternVL difference is significant at population scale (above). Phi's negative share means strict-EM \emph{understates} Phi's cross-script gap: under semantic-EM its Latin/non-Latin gap grows from $+12.7$ pp to $+19.98$ pp because Phi's Latin answers paraphrase the gold (judge-accepted) while its non-Latin answers genuinely fail. Two-judge and 3-architecture decompositions in Appendix~\ref{app:third-vlm} and \ref{app:bootstrap-cis}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_three_vlm_artifact.pdf}
+\caption{\textbf{Three VLM architectures, three artifact shares, 121 pp spread.} Point estimates with 95\% bootstrap CIs (2000 iterations). Qwen ($+66\%$): strict-EM overstates the Latin/non-Latin gap. InternVL ($+8\%$): approximately well-calibrated. Phi ($-57\%$, CI excludes zero): strict-EM \emph{understates} the gap.}
+\label{fig:three-vlm-artifact}
+\end{figure}
+
+\paragraph{Output-style verbosity is the mechanism.}
+Qwen2.5-VL-7B is more verbose on non-Latin --- it answers a date question with a date \emph{plus context}, an address with the address \emph{plus country}, a numeric with the numeral \emph{plus unit}; each addition is correct but byte-misses gold. InternVL is terser by default and Phi shorter still. We make this quantitative on the 341-row 3-VLM joint held-out (Table~\ref{tab:verbosity}): the non-Latin/Latin output-length ratio rank-orders the three architectures identically to their artifact share. Phi's Latin outputs are nearly as long as Qwen's ($28.1$ vs $30.9$ chars) but its non-Latin outputs are the shortest of the three ($17.4$ chars); on Latin it underperforms strict-EM by paraphrasing the longer gold, on non-Latin it overperforms by happening to match the short gold, yielding the negative artifact share. The pattern replicates at population: on joint $n=2142$, Qwen's ratio is $0.88$ vs InternVL's $0.66$, a $0.22$ split tracking the $+27.4$ pp artifact-share difference. Output-style verbosity is a measurable architecture-level prior, and is the largest single mechanism behind the architecture-specific strict-EM artifact share.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+VLM & Latin & non-Latin & ratio & artifact \\
+\midrule
+Qwen-7B    & 30.9 & 27.8 & $0.90$ & $+66\%$ \\
+InternVL-8B & 26.6 & 18.0 & $0.68$ & $+8\%$ \\
+Phi-3.5    & 28.1 & 17.4 & $0.62$ & $-57\%$ \\
+\bottomrule
+\end{tabular}
+\caption{\textbf{Mean output character count by VLM and script}, 341-row 3-VLM joint held-out. The non-Latin/Latin ratio rank-orders the three VLMs identically to their artifact share.}
+\label{tab:verbosity}
+\end{table}
+
+\paragraph{XFUND within-CJK control.}
+We replicate on XFUND (1394 rows over 7 languages). The cross-script Latin/CJK gap on XFUND is small (strict $+1.6$ pp $\to$ sem-EM $+1.1$ pp; artifact share $35\%$), but the within-CJK Japanese-vs-Chinese gap is large and \emph{survives} semantic-EM: $+29.6$ pp strict $\to +25.9$ pp sem-C, only $12\%$ artifact (Appendix~\ref{app:xfund}). This is the dual of the cross-script finding: cross-script gaps are largely artifact ($65\%$ on MTVQA), within-script CJK gaps are largely real ($88\%$ real on XFUND). Semantic-EM does not erase all cross-lingual differences; it isolates the surface-form-attributable component and leaves the genuine capability-attributable component visible.

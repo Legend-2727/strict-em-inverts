@@ -1,0 +1,352 @@
+{
+  "0": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "fr",
+    "image_uid": "train__01917__FR_427",
+    "gemini_verdict": "PARTIAL"
+  },
+  "5": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "ar",
+    "image_uid": "train__00076__AR_167",
+    "gemini_verdict": "PARTIAL"
+  },
+  "7": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "fr",
+    "image_uid": "train__01556__FR_101",
+    "gemini_verdict": "PARTIAL"
+  },
+  "10": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "ar",
+    "image_uid": "train__00185__AR_265",
+    "gemini_verdict": "CORRECT"
+  },
+  "11": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "ar",
+    "image_uid": "train__00269__AR_340",
+    "gemini_verdict": "INCORRECT"
+  },
+  "12": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "ru",
+    "image_uid": "train__04602__RU_113",
+    "gemini_verdict": "INCORRECT"
+  },
+  "13": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "de",
+    "image_uid": "train__00783__DE_292",
+    "gemini_verdict": "PARTIAL"
+  },
+  "14": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "kr",
+    "image_uid": "train__04466__KR_513",
+    "gemini_verdict": "INCORRECT"
+  },
+  "15": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "fr",
+    "image_uid": "train__01556__FR_101",
+    "gemini_verdict": "INCORRECT"
+  },
+  "17": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "de",
+    "image_uid": "train__01087__DE_566",
+    "gemini_verdict": "INCORRECT"
+  },
+  "20": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "kr",
+    "image_uid": "train__04245__KR_314",
+    "gemini_verdict": "PARTIAL"
+  },
+  "21": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "kr",
+    "image_uid": "train__04466__KR_513",
+    "gemini_verdict": "INCORRECT"
+  },
+  "22": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "it",
+    "image_uid": "train__02857__IT_560",
+    "gemini_verdict": "PARTIAL"
+  },
+  "23": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "de",
+    "image_uid": "train__00783__DE_292",
+    "gemini_verdict": "PARTIAL"
+  },
+  "24": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "vi",
+    "image_uid": "train__06177__VI_547",
+    "gemini_verdict": "CORRECT"
+  },
+  "25": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "ar",
+    "image_uid": "train__00076__AR_167",
+    "gemini_verdict": "PARTIAL"
+  },
+  "26": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "ru",
+    "image_uid": "train__04602__RU_113",
+    "gemini_verdict": "INCORRECT"
+  },
+  "27": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "it",
+    "image_uid": "train__02665__IT_388",
+    "gemini_verdict": "PARTIAL"
+  },
+  "28": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "ja",
+    "image_uid": "train__03692__JA_716",
+    "gemini_verdict": "PARTIAL"
+  },
+  "29": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "it",
+    "image_uid": "train__02665__IT_388",
+    "gemini_verdict": "INCORRECT"
+  },
+  "30": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "it",
+    "image_uid": "train__02812__IT_519",
+    "gemini_verdict": "CORRECT"
+  },
+  "31": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "ar",
+    "image_uid": "train__00309__AR_377",
+    "gemini_verdict": "INCORRECT"
+  },
+  "32": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "fr",
+    "image_uid": "train__01602__FR_143",
+    "gemini_verdict": "CORRECT"
+  },
+  "33": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "ja",
+    "image_uid": "train__03431__JA_481",
+    "gemini_verdict": "CORRECT"
+  },
+  "34": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "ja",
+    "image_uid": "train__03380__JA_435",
+    "gemini_verdict": "CORRECT"
+  },
+  "35": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "ru",
+    "image_uid": "train__04870__RU_355",
+    "gemini_verdict": "PARTIAL"
+  },
+  "36": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "ar",
+    "image_uid": "train__00185__AR_265",
+    "gemini_verdict": "CORRECT"
+  },
+  "1": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "kr",
+    "image_uid": "train__04399__KR_453",
+    "gemini_verdict": "PARTIAL"
+  },
+  "2": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "kr",
+    "image_uid": "train__04346__KR_405",
+    "gemini_verdict": "CORRECT"
+  },
+  "3": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "th",
+    "image_uid": "train__05425__TH_276",
+    "gemini_verdict": "INCORRECT"
+  },
+  "4": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "th",
+    "image_uid": "train__05287__TH_152",
+    "gemini_verdict": "PARTIAL"
+  },
+  "6": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "ja",
+    "image_uid": "train__03954__JA_952",
+    "gemini_verdict": "PARTIAL"
+  },
+  "8": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "ja",
+    "image_uid": "train__03880__JA_886",
+    "gemini_verdict": "INCORRECT"
+  },
+  "9": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "vi",
+    "image_uid": "train__05599__VI_1051",
+    "gemini_verdict": "INCORRECT"
+  },
+  "16": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "vi",
+    "image_uid": "train__05753__VI_165",
+    "gemini_verdict": "CORRECT"
+  },
+  "18": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "vi",
+    "image_uid": "train__06177__VI_547",
+    "gemini_verdict": "PARTIAL"
+  },
+  "19": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "vi",
+    "image_uid": "train__06177__VI_547",
+    "gemini_verdict": "INCORRECT"
+  },
+  "37": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "ru",
+    "image_uid": "train__05140__RU_5",
+    "gemini_verdict": "CORRECT"
+  },
+  "38": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "de",
+    "image_uid": "train__00671__DE_191",
+    "gemini_verdict": "CORRECT"
+  },
+  "39": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "it",
+    "image_uid": "train__02688__IT_408",
+    "gemini_verdict": "CORRECT"
+  },
+  "40": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "th",
+    "image_uid": "train__05425__TH_276",
+    "gemini_verdict": "INCORRECT"
+  },
+  "41": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "vi",
+    "image_uid": "train__05557__VI_1013",
+    "gemini_verdict": "PARTIAL"
+  },
+  "42": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "th",
+    "image_uid": "train__05425__TH_276",
+    "gemini_verdict": "CORRECT"
+  },
+  "43": {
+    "verdict": "PARTIAL",
+    "notes": "",
+    "language": "ru",
+    "image_uid": "train__05066__RU_531",
+    "gemini_verdict": "PARTIAL"
+  },
+  "44": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "de",
+    "image_uid": "train__01110__DE_587",
+    "gemini_verdict": "INCORRECT"
+  },
+  "45": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "it",
+    "image_uid": "train__02665__IT_388",
+    "gemini_verdict": "INCORRECT"
+  },
+  "46": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "fr",
+    "image_uid": "train__02313__FR_784",
+    "gemini_verdict": "INCORRECT"
+  },
+  "47": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "th",
+    "image_uid": "train__05287__TH_152",
+    "gemini_verdict": "PARTIAL"
+  },
+  "48": {
+    "verdict": "INCORRECT",
+    "notes": "",
+    "language": "ja",
+    "image_uid": "train__03961__JA_95",
+    "gemini_verdict": "INCORRECT"
+  },
+  "49": {
+    "verdict": "CORRECT",
+    "notes": "",
+    "language": "fr",
+    "image_uid": "train__01830__FR_34",
+    "gemini_verdict": "CORRECT"
+  }
+}

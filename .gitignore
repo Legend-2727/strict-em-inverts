@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+build/
+dist/
+*.egg
+
+# Virtual envs
+.venv/
+.venv_*/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+.qodo/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# LaTeX build artifacts (keep main.pdf; drop the rest)
+paper/main.aux
+paper/main.bbl
+paper/main.blg
+paper/main.fdb_latexmk
+paper/main.fls
+paper/main.out
+paper/main.log
+paper/rendered/
+
+# Large data not checked into the repo
+results/day18_human_validation/images/
+data/processed/
+
+# Inference checkpoints + per-model HF caches
+checkpoints/
+hf-cache/
+.cache/
+
+# Secrets — never commit
+.env
+*.env
+secrets/
+*.json.key
+vertex-sa.json
+service-account*.json
+
+# Notebook checkpoints
+.ipynb_checkpoints/
