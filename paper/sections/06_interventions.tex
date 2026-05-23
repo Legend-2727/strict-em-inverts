@@ -8,25 +8,26 @@ The test-time interventions are \textbf{(1)} OCR-prepended prompt (EasyOCR trans
 \begin{table}[t]
 \centering
 \small
-\begin{tabular}{lrrr}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{3.5cm}rrr@{}}
 \toprule
 intervention & $\Delta$strict & $\Delta$sem-C & $\Delta$sem-C+P \\
 \midrule
 OCR-prepended prompt          & $+0.6$ & $\sim 0$ & $\sim 0$ \\
-OCR logit-bias $\lambda=1$    & $+0.0$ & $\sim 0$ & $\sim 0$ \\
-OCR logit-bias $\lambda=2$    & $+0.0$ & $\sim 0$ & $\sim 0$ \\
-OCR logit-bias $\lambda=3$    & $-3.4$ & $\sim 0$ & $\sim 0$ \\
-Beam5 + OCR-rerank             & $+0.0$ & $\sim 0$ & $\sim 0$ \\
-VCD ($\alpha=1$)               & $-1.6$ & $\sim 0$ & $\sim 0$ \\
-Probe-steer L16 $\alpha=+10$   & $-0.2$ & $\sim 0$ & $\sim 0$ \\
-Probe-steer L20 $\alpha=+10$   & $-0.4$ & $\sim 0$ & $\sim 0$ \\
-Probe-steer L24 $\alpha=+10$   & $-0.4$ & $\sim 0$ & $\sim 0$ \\
-Probe-steer L27 $\alpha=+10$   & $-0.6$ & $\sim 0$ & $\sim 0$ \\
-Probe-steer L20 $\alpha=+50$   & $-3.4$ & $\sim 0$ & $\sim 0$ \\
+OCR logit-bias $\lambda{=}1$  & $+0.0$ & $\sim 0$ & $\sim 0$ \\
+OCR logit-bias $\lambda{=}2$  & $+0.0$ & $\sim 0$ & $\sim 0$ \\
+OCR logit-bias $\lambda{=}3$  & $-3.4$ & $\sim 0$ & $\sim 0$ \\
+Beam5 + OCR-rerank            & $+0.0$ & $\sim 0$ & $\sim 0$ \\
+VCD ($\alpha{=}1$)            & $-1.6$ & $\sim 0$ & $\sim 0$ \\
+Probe-steer L16 $\alpha{=}{+}10$ & $-0.2$ & $\sim 0$ & $\sim 0$ \\
+Probe-steer L20 $\alpha{=}{+}10$ & $-0.4$ & $\sim 0$ & $\sim 0$ \\
+Probe-steer L24 $\alpha{=}{+}10$ & $-0.4$ & $\sim 0$ & $\sim 0$ \\
+Probe-steer L27 $\alpha{=}{+}10$ & $-0.6$ & $\sim 0$ & $\sim 0$ \\
+Probe-steer L20 $\alpha{=}{+}50$ & $-3.4$ & $\sim 0$ & $\sim 0$ \\
 \midrule
-Anchor-SFT (d13, 952 pairs)    & $\bm{+4.19}$ & --- & --- \\
-Anchor-SFT (d16, 6054 pairs)   & $+2.79$ & $-0.28$ & $-0.84$ \\
-SimPO ($\beta=2$)              & $-20.1$ & $-19.4$ & $-22.3$ \\
+Anchor-SFT (d13, 952 pairs)   & $\bm{+4.19}$ & --- & --- \\
+Anchor-SFT (d16, 6054 pairs)  & $+2.79$ & $-0.28$ & $-0.84$ \\
+SimPO ($\beta{=}2$)           & $-20.1$ & $-19.4$ & $-22.3$ \\
 \bottomrule
 \end{tabular}
 \caption{13 interventions on Qwen2.5-VL-7B, 358-row MTVQA held-out. Rows $\sim 0$ have $|\Delta\text{sem-C}| < 0.5$ pp (full table Appendix~\ref{app:13-interventions}). \emph{All 11 test-time interventions have $|\Delta\text{sem-C}| < 1$ pp.}}

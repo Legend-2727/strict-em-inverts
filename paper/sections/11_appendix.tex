@@ -3,31 +3,39 @@
 
 The Gemini-2.5-Flash adjudication prompt (used identically for MTVQA and XFUND, including image+prediction parts):
 
+{\scriptsize
 \begin{verbatim}
-You are evaluating a Visual Question Answering (VQA)
-model's prediction against a gold-standard answer.
+You are evaluating a Visual Question
+Answering (VQA) model's prediction against
+a gold-standard answer.
 
-Given the document image, the question, the gold answer,
-and the model's prediction, decide whether the prediction is:
-- CORRECT: semantically equivalent to gold (synonyms,
-  whitespace, diacritics, alternate phrasing,
-  number-vs-numeral, valid translation, lossless reformat
+Given the document image, the question, the
+gold answer, and the model's prediction,
+decide whether the prediction is:
+- CORRECT: semantically equivalent to gold
+  (synonyms, whitespace, diacritics,
+  alternate phrasing, number-vs-numeral,
+  valid translation, lossless reformat
   -- same meaning).
-- PARTIAL: contains correct information but is incomplete
-  or less specific than gold (e.g., gives surname without
-  first name; gives one item from a list).
-- INCORRECT: states something different from gold,
-  fabricates information not supported by the image,
-  or is unrelated.
+- PARTIAL: contains correct information but
+  is incomplete or less specific than gold
+  (e.g., gives surname without first name;
+  gives one item from a list).
+- INCORRECT: states something different from
+  gold, fabricates information not supported
+  by the image, or is unrelated.
 
-You MUST look at the image. If the gold answer itself is
-wrong and the model's prediction matches the image better,
-judge against the IMAGE evidence, not the gold.
+You MUST look at the image. If the gold
+answer itself is wrong and the model's
+prediction matches the image better, judge
+against the IMAGE evidence, not the gold.
 
-Respond with ONLY a valid JSON object with two fields:
+Respond with ONLY a valid JSON object with
+two fields:
   {"verdict": "CORRECT"|"PARTIAL"|"INCORRECT",
    "reason": "<one short sentence>"}
 \end{verbatim}
+}
 
 Decoding settings: temperature 0, max\_output\_tokens 4096, response\_mime\_type \texttt{application/json}. We parse the response with a robust JSON-recovery pipeline that handles markdown code-fence wrapping and trailing-comment artifacts; un-recoverable rows are retagged \textsc{Missing}.
 
@@ -321,14 +329,15 @@ Table~\ref{tab:sft-perlang} reports the per-language strict-EM and semantic-EM-C
 
 \begin{table}[t]
 \centering
-\small
-\begin{tabular}{lrrr}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrr@{}}
 \toprule
 lang & $n$ & $\Delta$strict (95\% CI) & $\Delta$sem-C (95\% CI) \\
 \midrule
 ar & 34 & $\bm{+11.8}$ [$+0.8$, $+22.8$]$^*$ & $-5.9$ [$-20.1$, $+8.3$] \\
 de & 60 & $-1.7$ [$-7.4$, $+4.0$] & $+3.3$ [$-8.0$, $+14.7$] \\
-fr & 40 & $+12.5$ [$-0.0$, $+25.0$]   & $+0.0$ [$-12.2$, $+12.2$] \\
+fr & 40 & $+12.5$ [$-0.0$, $+25.0$] & $+0.0$ [$-12.2$, $+12.2$] \\
 it & 53 & $+3.8$ [$-5.3$, $+12.9$] & $+1.9$ [$-11.6$, $+15.3$] \\
 ja & 62 & $-1.6$ [$-13.1$, $+9.9$] & $-4.8$ [$-17.9$, $+8.2$] \\
 kr & 28 & $+7.1$ [$-2.6$, $+16.9$] & $+0.0$ [$-14.3$, $+14.3$] \\
@@ -357,16 +366,17 @@ We replicate the strict-vs-semantic protocol on XFUND \citep{xu2022xfund} across
 \begin{table}[t]
 \centering
 \small
-\begin{tabular}{lrrrr}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrr@{}}
 \toprule
 & ja & zh & zh$-$ja gap & artifact \\
 \midrule
-strict-EM       & 13.0\% & 42.6\% & $+29.6$ pp & --- \\
-semantic-EM-C   & 30.0\% & 55.9\% & $+25.9$ pp & 12.4\% \\
-semantic-EM-C+P & 46.5\% & 66.7\% & $+20.2$ pp & 31.8\% \\
+strict-EM       & 13.0\% & 42.6\% & $+29.6$ & --- \\
+semantic-EM-C   & 30.0\% & 55.9\% & $+25.9$ & 12.4\% \\
+semantic-EM-C+P & 46.5\% & 66.7\% & $+20.2$ & 31.8\% \\
 \bottomrule
 \end{tabular}
-\caption{XFUND within-CJK Japanese vs Chinese gap, base Qwen2.5-VL-7B over $n=200$ ja + $n=195$ zh judged rows. The strict-EM gap of $+29.6$ pp shrinks only to $+25.9$ pp under semantic-CORRECT: artifact share $12\%$. The within-CJK gap is \emph{not} a measurement artifact.}
+\caption{XFUND within-CJK Japanese vs Chinese gap (pp), base Qwen2.5-VL-7B over $n=200$ ja + $n=195$ zh judged rows. The strict-EM gap of $+29.6$ pp shrinks only to $+25.9$ pp under semantic-CORRECT: artifact share $12\%$. The within-CJK gap is \emph{not} a measurement artifact.}
 \label{tab:xfund-cjk}
 \end{table}
 
