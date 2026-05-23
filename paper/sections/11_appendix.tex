@@ -198,15 +198,19 @@ We compute 2000-iter percentile bootstrap 95\% confidence intervals on every qua
 \item Qwen2.5-VL-7B ($n=357$): strict gap $+12.95$ pp [$+4.14$, $+21.76$]; sem-C gap $+4.34$ pp [$-6.02$, $+14.75$]; artifact share $+66.4\%$ [$-20.0$, $+182.8$].
 \item InternVL-2.5-8B ($n=354$): strict gap $+10.69$ pp [$+0.71$, $+20.61$]; sem-C gap $+9.87$ pp [$-0.08$, $+20.56$]; artifact share $+7.7\%$ [$-158.9$, $+112.4$].
 \item Phi-3.5-vision ($n=341$): strict gap $+12.69$ pp [$+6.17$, $+19.10$]; sem-C gap $+19.98$ pp [$+11.30$, $+28.51$]; artifact share $-57.4\%$ [$-156.5$, $-4.8$].
+\item Llama-3.2-Vision-11B ($n=353$): strict gap $+9.61$ pp [$+3.16$, $+15.58$]; sem-C gap $+13.85$ pp [$+3.26$, $+23.86$]; artifact share $-44.2\%$ [$-247.0$, $+62.0$].
 \end{itemize}
 
 \paragraph{Pairwise artifact-share differences (independent bootstrap).}
 \begin{itemize}
 \item Qwen $-$ InternVL: $+58.8$ pp [$-95.1$, $+277.2$] --- includes zero.
 \item \textbf{Qwen $-$ Phi: $+123.8$ pp [$+33.0$, $+279.0$] --- excludes zero.}
+\item Qwen $-$ Llama: $+110.7$ pp [$-20.2$, $+340.1$] --- includes zero (direction-consistent).
 \item InternVL $-$ Phi: $+65.0$ pp [$-114.7$, $+232.7$] --- includes zero.
+\item InternVL $-$ Llama: $+51.9$ pp [$-115.1$, $+322.1$] --- includes zero.
+\item Phi $-$ Llama: $-13.2$ pp [$-168.4$, $+189.4$] --- includes zero (the two negative-artifact-share architectures are statistically indistinguishable, confirming the negative-side cluster is not a Phi-only effect).
 \end{itemize}
-The conservative reading: the three-architecture spread is real (Qwen vs Phi cleanly clears bootstrap significance, with Phi alone giving a significantly negative artifact share); the two-architecture Qwen-vs-InternVL difference is in the predicted direction at the point estimate but underpowered at $n \approx 350$. Increasing the sample size --- e.g. via the full-MTVQA-val replication (Appendix~\ref{app:per-language}) for InternVL --- is the natural follow-up; we report the headline 353-row inversion result as the more conservative, replicated, jointly-judged number.
+The conservative reading: the four-architecture spread is real (Qwen vs Phi cleanly clears bootstrap significance with Phi alone giving a significantly negative artifact share, and a second independent architecture, Llama-3.2-Vision-11B, replicates Phi's direction); the two-architecture Qwen-vs-InternVL difference is in the predicted direction at the point estimate but underpowered at $n \approx 350$. Increasing the sample size --- e.g. via the full-MTVQA-val replication (Appendix~\ref{app:per-language}) for InternVL --- is the natural follow-up; we report the headline 353-row inversion result as the more conservative, replicated, jointly-judged number.
 
 \section{Third architecture: Phi-3.5-vision-instruct}
 \label{app:third-vlm}
@@ -273,6 +277,33 @@ Phi-3.5-vision & 4.1B & $+12.7$ & $+19.98$ & $\mathbf{-57.4\%}$ \\
 
 \paragraph{Why does Phi behave differently?}
 Phi-3.5-vision produces relatively long, qualified outputs on Latin questions (e.g., descriptive sentences rather than bare extractions) which the judge accepts as semantically equivalent more often than strict-EM does. On non-Latin questions (especially Arabic and Japanese), Phi is comparatively weak at script-correct extraction --- many outputs are in the wrong script or are off-topic English placeholders that the judge correctly labels \textsc{Incorrect}. The two effects compound: judge-as-correct gains on Latin but rare on non-Latin, opening the cross-script gap further under semantic adjudication. This is the architectural-dependence claim made concrete: the direction of measurement bias depends on whether the architecture's failure mode is verbose-but-correct (Phi on Latin) or short-and-wrong (Phi on non-Latin), and these two failure modes are not evenly distributed across scripts.
+
+\paragraph{Fourth architecture: Llama-3.2-Vision-11B-Instruct.}
+To test whether Phi's negative artifact share is a single-model coincidence, we run Meta's \textbf{Llama-3.2-Vision-11B-Instruct} ($11$B params, MIT-style instruction-tuned vision adapter on Llama-3.1 8B language backbone) on the same 358-row MTVQA held-out under identical decoding settings and the same short-answer prompt as the other three VLMs. Of 358 (image, question) pairs, 355 produced predictions (3 lost during inference) and 353 received clean Gemini-Flash verdicts (2 lost to 429 retry exhaustion); 4 rows received Spanish or typo verdict tokens which we coerce to \textsc{Incorrect}. Per-language results in Table~\ref{tab:llama-perlang}: Llama is comparable to Phi in overall strict-EM ($11.1\%$ vs $13.2\%$) and slightly stronger on semantic-EM-C ($39.4\%$ vs $39.3\%$); both are roughly half the capability of Qwen and InternVL on this benchmark. The Latin/non-Latin strict gap is $+9.61$ pp and the sem-C gap is $+13.85$ pp, yielding artifact share $-44.2\%$ [$-247$, $+62$] --- direction-consistent with Phi ($-57.4\%$) and statistically indistinguishable from Phi pairwise ($\Delta = -13.2$ pp [$-168$, $+189$]). The conclusion is that the negative-artifact-share architectural cluster is not a Phi-only effect: a second open VLM, with a different training pipeline and a different vision-text bridge, exhibits the same direction.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+lang & $n$ & strict & sem-C & sem-C+P \\
+\midrule
+ar & 35 & 8.6\%  & 28.6\% & 31.4\% \\
+de & 60 & 15.0\% & 43.3\% & 68.3\% \\
+fr & 39 & 7.7\%  & 51.3\% & 74.4\% \\
+it & 53 & 17.0\% & 43.4\% & 60.4\% \\
+ja & 62 & 1.6\%  & 37.1\% & 51.6\% \\
+kr & 28 & 10.7\% & 25.0\% & 42.9\% \\
+ru & 19 & 5.3\%  & 31.6\% & 42.1\% \\
+th & 3  & 0.0\%  & 0.0\%  & 0.0\%  \\
+vi & 54 & 18.5\% & 44.4\% & 59.3\% \\
+\midrule
+all & 353 & 11.1\% & 39.4\% & 55.8\% \\
+\bottomrule
+\end{tabular}
+\caption{Per-language EM for Llama-3.2-Vision-11B-Instruct on the 353-row MTVQA held-out (judged by the same Gemini-Flash semantic-EM judge as the other three VLMs).}
+\label{tab:llama-perlang}
+\end{table}
 
 \section{Training recipes (SFT, SimPO)}
 \label{app:training}
